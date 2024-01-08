@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserDAO">
+
+	<insert id="insertUser" parameterType="user">
+		<![CDATA[
+			INSERT INTO USER(NAME,ID,NICKNAME,PASSWORD,EMAIL,AGE) 
+			VALUES(#{name},#{id},#{nickname},#{password},#{email},#{age})
+		]]>
+	</insert>
+
+	<select id="getId" resultType="user">
+		<![CDATA[
+			SELECT * FROM USER WHERE ID=#{id}
+		]]>
+	</select>
+
+	<select id="getNickname" resultType="user">
+		<![CDATA[
+			SELECT * FROM USER WHERE NICKNAME=#{nickname}
+		]]>
+	</select>
+
+	<select id="getLogin" resultType="user">
+		SELECT * FROM USER WHERE ID=#{id} AND PASSWORD=#{password}
+	</select>
+
+</mapper>
