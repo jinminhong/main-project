@@ -12,25 +12,19 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/locationMenu1.css">
 <script src="js/jquery.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
-<script
-	src="
-https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js
-"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
 <script src="js/search.js"></script>
 <body>
+	<input type="hidden" id="searchKeyWordHidden" value="${searchKeyWord}">
 	<div class="container fixed-top">
 		<nav class="navbar navbar-expand-sm back">
 			<header>
-				<a href=""> <img src="img/뒤로가기.png"alt"">
+				<a href="index.do"> <img src="img/뒤로가기.png" alt"">
 				</a>
 				<div>검색 결과</div>
 			</header>
@@ -74,13 +68,8 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js
 			</nav>
 		</div>
 	</div>
-	<div class="container">
-		<div class="store-list">
-			<c:forEach items="${storeList}" var="store"></c:forEach>
-			<div class="store-img">
-				<img alt="" src="${store.getPic}">
-			</div>
-		</div>
+	<div class="container" id="store-container" style="margin-top:300px">
+		
 	</div>
 	<!-- priceModal -->
 	<div class="modal fade" id="modalPrice" role="dialog">
@@ -122,10 +111,52 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div id="calendar"></div>
+				<div class="mem-num"></div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=7a8568101b200df8af87438da11f7da1&libraries=services"></script>
+	<script>
+	var ps = new kakao.maps.services.Places(); 
+	var searchkeyword = $("#searchKeyWordHidden").val()+ " 맛집";
+	// 키워드로 장소를 검색합니다
+	ps.keywordSearch(searchkeyword, placesSearchCB); 
 
+	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+	function placesSearchCB (data, status, pagination) {
+	    if (status === kakao.maps.services.Status.OK) {
 
+	    }
+	    console.log(data);
+	    for (var i = 0; i < 5; i++) {
+	        createAndAppendStoreNodes(data[i]);
+	    }
+	}
+	function createAndAppendStoreNodes(data) {
+		var category_name = data.category_name.split('>').pop();
+		//ajax로 db랑 통신해서 뽑아내자.
+		$.ajax({
+			url:"storeCheck.do",
+			type:"post",
+			data:{"storeName":data.place_name},
+			dataType:'data',
+		})
+        var storeNode = $('<div class="store-list" style="display:flex">' +
+            '<div class="store-img" style="margin-right:20px;margin-bottom:20px"><img alt="" src="https://via.placeholder.com/200x250"></div>' +
+            '<div class="store-detail" style="margin-top:20px">' +
+            '<div class="place_name" style="margin-top:20px">' + data.place_name + '</div>' +
+            '<div class="category_name" style="margin-top:20px">' + category_name + '</div>' +
+            '<div class="phone" style="margin-top:20px">' + data.phone + '</div>' +
+            '<div class="road_address_name" style="margin-top:20px">' + data.road_address_name + '</div>' +
+            '</div>' +
+            '</div>');
+
+        // 생성한 노드를 container 안에 추가
+        $('#store-container').append(storeNode);
+        
+    }
+	
+
+	</script>
 </body>
 </html>

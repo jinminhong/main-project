@@ -138,6 +138,9 @@ book-nav{
     cursor: pointer;
 }
 
+.fc-day-other{
+	opacity:0;
+}
 
 
 

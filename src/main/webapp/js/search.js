@@ -1,19 +1,29 @@
 $(function () {
-
+	let date = new Date();
+    let year = date.getFullYear();
+    let month = ("0" + (1 + date.getMonth())).slice(-2);
+    let day = ("0" + date.getDate()).slice(-2);
+	$("#selectDate > li:nth-child(1) > a").html(year+"-"+month+"-"+day);
     $("body > div > div > nav.navbar.navbar-expand-sm.bg-light.place-nav > div > ul > li:nth-child(5) > a").on("click",function(){
         $("#modalPrice").modal("toggle");
     })
-    
+  
     
 	$('#memberNumModal').on('shown.bs.modal', function () {
 	    var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
+     	var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+		dateClick:function(info){
+			console.log(info);
+			console.log(info.dateStr);
+			
+			$("#selectDate > li:nth-child(1) > a").html(info.dateStr);
+		}
+      });
+      calendar.render();
 	});
     
-    $("#selectDate").on("click",function(){
+    $("#selectDate").on("click",function(){	
     	console.log("1");
     	$("#memberNumModal").modal("toggle");
 	  	

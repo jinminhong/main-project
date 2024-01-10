@@ -9,6 +9,13 @@ public class StoreVO {
 	private int space;
 	private int openFrom;
 	private int openEnd;
+	private String searchKeyWord;
+	public String getSearchKeyWord() {
+		return searchKeyWord;
+	}
+	public void setSearchKeyWord(String searchKeyWord) {
+		this.searchKeyWord = searchKeyWord;
+	}
 	public String getSname() {
 		return sname;
 	}

@@ -19,7 +19,7 @@
 		</div>
 		<div id="search">
 			<form action="search.do" method="post">
-				<input type="text" name="searchBox" id="searchBox" placeholder="지역이나 맛집을 검색하세요" >
+				<input type="text" name="searchKeyWord" id="searchBox" placeholder="지역이나 맛집을 검색하세요" >
 				<input type="submit" value="검색" id="searchSubmit" >
 			</form>
 		</div>
@@ -63,31 +63,31 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=pizza">
 						<img src="img/피자.png" alt="" class="menuImg"/>
 						<p>피자</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=pasta">
 						<img src="img/파스타.png" alt="" class="menuImg"/>
 						<p>파스타</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=한식">
 						<img src="img/비빔밥.png" alt="" class="menuImg"/>
 						<p>한식</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=중식">
 						<img src="img/만두.png" alt="" class="menuImg"/>
 						<p>중식</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=일식">
 						<img src="img/새우튀김.png" alt="" class="menuImg"/>
 						<p>일식</p>
 					</a>
@@ -95,31 +95,31 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=오마카세">
 						<img src="img/초밥.png" alt="" class="menuImg"/>
 						<p>오마카세</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=우마카세">
 						<img src="img/우마카세.png" alt="" class="menuImg"/>
 						<p>우마카세</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=다이닝">
 						<img src="img/다이닝.png" alt="" class="menuImg"/>
 						<p>다이닝</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=케이크">
 						<img src="img/케이크.png" alt="" class="menuImg"/>
 						<p>케이크</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=카페">
 						<img src="img/카페.png" alt="" class="menuImg"/>
 						<p>카페</p>
 					</a>
@@ -498,8 +498,8 @@
 			<h1>꿀맛</h1>
 		</div>
 		<div id="search">
-			<form action="" method="post">
-				<input type="text" name="searchBox" id="searchBox" placeholder="지역이나 맛집을 검색하세요" >
+			<form action="search.do" method="post">
+				<input type="text" name="searchKeyWord" id="searchBox" placeholder="지역이나 맛집을 검색하세요" >
 				<input type="submit" value="검색" id="searchSubmit">
 			</form>
 		</div>
@@ -543,31 +543,31 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=피자">
 						<img src="img/피자.png" alt=""/>
 						<p>피자</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=파스타">
 						<img src="img/파스타.png" alt=""/>
 						<p>파스타</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=한식">
 						<img src="img/비빔밥.png" alt=""/>
 						<p>한식</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=중식">
 						<img src="img/만두.png" alt=""/>
 						<p>중식</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=일식">
 						<img src="img/새우튀김.png" alt=""/>
 						<p>일식</p>
 					</a>
@@ -575,31 +575,31 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=오마카세">
 						<img src="img/초밥.png" alt=""/>
 						<p>오마카세</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=우마카세">
 						<img src="img/우마카세.png" alt=""/>
 						<p>우마카세</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=다이닝">
 						<img src="img/다이닝.png" alt=""/>
 						<p>다이닝</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=케이크">
 						<img src="img/케이크.png" alt=""/>
 						<p>케이크</p>
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="search.do?searchKeyWord=카페">
 						<img src="img/카페.png" alt=""/>
 						<p>카페</p>
 					</a>

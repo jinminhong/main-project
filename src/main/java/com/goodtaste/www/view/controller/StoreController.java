@@ -15,7 +15,7 @@ public class StoreController {
 	
 	@RequestMapping(value="search.do")
 	public String getStoreList(StoreVO vo,Model model) {
-		model.addAttribute("storeList",storeService.getStoreList(vo));
+		model.addAttribute("searchKeyWord",vo.getSearchKeyWord());
 		return "search.jsp";
 	}
 }
