@@ -6,10 +6,24 @@ public class StoreVO {
 	private String address;
 	private String pic;
 	private String bookOrWait;
-	private int space;
+	private int spaces;
 	private int openFrom;
 	private int openEnd;
 	private String searchKeyWord;
+	private String storeDesc;
+	private int waitNum;
+	public int getWaitNum() {
+		return waitNum;
+	}
+	public void setWaitNum(int waitNum) {
+		this.waitNum = waitNum;
+	}
+	public String getStoreDesc() {
+		return storeDesc;
+	}
+	public void setStoreDesc(String storeDesc) {
+		this.storeDesc = storeDesc;
+	}
 	public String getSearchKeyWord() {
 		return searchKeyWord;
 	}
@@ -46,11 +60,11 @@ public class StoreVO {
 	public void setBookOrWait(String bookOrWait) {
 		this.bookOrWait = bookOrWait;
 	}
-	public int getSpace() {
-		return space;
+	public int getSpaces() {
+		return spaces;
 	}
-	public void setSpace(int space) {
-		this.space = space;
+	public void setSpaces(int spaces) {
+		this.spaces = spaces;
 	}
 	public int getOpenFrom() {
 		return openFrom;
@@ -64,5 +78,10 @@ public class StoreVO {
 	public void setOpenEnd(int openEnd) {
 		this.openEnd = openEnd;
 	}
-	
+	public String toJson() {
+		return "{"
+				+ "	\"pic\" : \"" + pic+"\","
+				+ "	\"spaces\" : \""+spaces+"\""
+				+ "}";
+	}
 }

@@ -18,6 +18,7 @@ $(function () {
 			console.log(info.dateStr);
 			
 			$("#selectDate > li:nth-child(1) > a").html(info.dateStr);
+			
 		}
       });
       calendar.render();

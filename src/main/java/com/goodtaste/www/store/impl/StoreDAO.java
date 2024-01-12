@@ -17,4 +17,13 @@ public class StoreDAO {
 		System.out.println("===>Mybatis로 getStoreList");
 		return mybatis.selectList("StoreDAO.getStoreList",vo);
 	}
+	public StoreVO getStoreInfo(StoreVO vo) {
+		System.out.println("===>Mybatis로 getStoreInfo기능 처리");
+		return mybatis.selectOne("StoreDAO.getStoreInfo",vo);
+	}
+	public StoreVO getLogin(StoreVO vo) {
+		System.out.println("===>mybatis로 getLogin 기능 처리");
+		return mybatis.selectOne("StoreDAO.getLogin",vo);
+	}
+	
 }

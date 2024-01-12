@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'insungitCutelivelyjisu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/insungitCutelivelyjisu.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    font-family: 'insungitCutelivelyjisu';
+}
+
+.navbar{
+	position:relative;
+	
+}
+.navbar > header{
+	position:relative;
+	width:100%;
+	display:flex;
+	justify-content: space-between;
+}
+.navbar>header>a{
+	text-decoration-line: none;
+	color:black;
+	height:40px;
+}
+
+.container > .store-pic{
+	text-align: center;
+}
+.container > .store-detail{
+	width:70%;
+}
+
+.container > .store-detail > p{
+	font-size:30px;
+	color:#dee0e3;
+}
+
+
+
+
+
+

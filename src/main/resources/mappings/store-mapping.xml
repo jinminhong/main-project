@@ -7,5 +7,17 @@
 		AND SNAME LIKE CONCAT('%',#{searchKeyword},'%')
 		OR ADDRESS LIKE CONCAT('%',#{searchKeyword},'%')
 	</select>
+	
+	<select id="getStoreInfo" resultType="store">
+	<![CDATA[
+		SELECT * FROM STORE WHERE SNAME=#{sname}
+		]]>
+	</select>
+	
+	<select id="getLogin" resultType="store">
+		<![CDATA[
+			SELECT * FROM STORE WHERE SNAME=#{sname} AND PASSWORD=#{password}
+		]]>
+	</select>
 </mapper>
 

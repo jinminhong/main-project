@@ -21,7 +21,8 @@
 <script src="js/search.js"></script>
 <body>
 	<input type="hidden" id="searchKeyWordHidden" value="${searchKeyWord}">
-	<div class="container fixed-top">
+	
+	<div class="container fixed-top" style="background-color:white">
 		<nav class="navbar navbar-expand-sm back">
 			<header>
 				<a href="index.do"> <img src="img/뒤로가기.png" alt"">
@@ -119,6 +120,7 @@
 	<script>
 	var ps = new kakao.maps.services.Places(); 
 	var searchkeyword = $("#searchKeyWordHidden").val()+ " 맛집";
+	var searchkeywordHidden=$("#searchKeyWordHidden").val();
 	// 키워드로 장소를 검색합니다
 	ps.keywordSearch(searchkeyword, placesSearchCB); 
 
@@ -134,25 +136,70 @@
 	}
 	function createAndAppendStoreNodes(data) {
 		var category_name = data.category_name.split('>').pop();
+		let sname = data.place_name;
 		//ajax로 db랑 통신해서 뽑아내자.
 		$.ajax({
 			url:"storeCheck.do",
 			type:"post",
-			data:{"storeName":data.place_name},
-			dataType:'data',
-		})
-        var storeNode = $('<div class="store-list" style="display:flex">' +
-            '<div class="store-img" style="margin-right:20px;margin-bottom:20px"><img alt="" src="https://via.placeholder.com/200x250"></div>' +
-            '<div class="store-detail" style="margin-top:20px">' +
-            '<div class="place_name" style="margin-top:20px">' + data.place_name + '</div>' +
-            '<div class="category_name" style="margin-top:20px">' + category_name + '</div>' +
-            '<div class="phone" style="margin-top:20px">' + data.phone + '</div>' +
-            '<div class="road_address_name" style="margin-top:20px">' + data.road_address_name + '</div>' +
-            '</div>' +
-            '</div>');
+			data:{"sname":sname},
+			dataType:'json',
+			success: function(result){
+				console.log(result);
+				if(result != 0){
+					let spaces = Number(result.spaces);
+					let spacesInput;
+					if(spaces>0){
+						spacesInput = "현재 바로 입장가능합니다.";
+						var storeNode = $('<div class="store-container" style="display:flex; margin-bottom: 20px; width: 100%;">' +
+							    '<a href="storeDetail.do?sname=' + sname + '&genre='+category_name+'&address='+data.road_address_name+'&phone='+data.phone+'&waitNum='+0+'&searchKeyWord='+searchkeywordHidden+'" style="text-decoration-line: none; color:black; width: 70%;">' +
+							    '<div class="store-list" style="display:flex; width: 100%;">' +
+							    '<div class="store-img" style="margin-right: 20px; width: 200px; height: 300px;"><img style="width:200px; height:100%" alt="" src="img음식점/' + result.pic + '"></div>' +
+							    '<div class="store-detail" style="width: 100%;">' +
+							    '<div class="place_name"><h3>' + data.place_name + '</h3></div>' +
+							    '<div class="category_name">' + category_name + '</div>' +
+							    '<div class="phone">' + data.phone + '02' + '</div>' +
+							    '<div class="road_address_name">' + data.road_address_name + '</div>' +
+							    '</div>' +
+							    '</div></a>' +
+							    '<div class="additional-info" style="width: 200px; margin-left: 20px;">' +
+							    '<p style="text-align:center">'+spacesInput+'</p>' +
+							    '</div>' +
+							    '</div>');
+					}else{
+						spacesInput = Math.abs(spaces);
+						var storeNode = $('<div class="store-container" style="display:flex; margin-bottom: 20px; width: 100%;">' +
+							    '<a href="storeDetail.do?sname=' + sname + '&genre='+category_name+'&address='+data.road_address_name+'&phone='+data.phone+'&waitNum='+1+'&searchKeyWord='+searchkeywordHidden+'" style="text-decoration-line: none; color:black; width: 70%;">' +
+							    '<div class="store-list" style="display:flex; width: 100%;">' +
+							    '<div class="store-img" style="margin-right: 20px; width: 200px; height: 300px;"><img style="width:200px; height:100%" alt="" src="img음식점/' + result.pic + '"></div>' +
+							    '<div class="store-detail" style="width: 100%;">' +
+							    '<div class="place_name"><h3>' + data.place_name + '</h3></div>' +
+							    '<div class="category_name">' + category_name + '</div>' +
+							    '<div class="phone">' + data.phone + '02' + '</div>' +
+							    '<div class="road_address_name">' + data.road_address_name + '</div>' +
+							    '</div>' +
+							    '</div></a>' +
+							    '<div class="additional-info" style="width: 200px; margin-left: 20px;">' +
+							    '<p style="text-align:center">'+spacesInput+'명 대기중입니다.</p>' + 
+							    '<form action="book.do?sname=' + sname+'" method="post">'+
+							    '<input type="hidden" name="date">'+
+							    '<input type="hidden" name="memberNum">'+
+							    '<input type="submit" value="줄서기" style="background-color:red;width:100%">'+
+							    '</form>'+
+							    '</div>' +
+							    '</div>');
+					}
 
-        // 생성한 노드를 container 안에 추가
-        $('#store-container').append(storeNode);
+				        // 생성한 노드를 container 안에 추가
+				        $('#store-container').append(storeNode);
+				}else{
+					console.log("없음");
+				}
+			},
+			error:function(){
+				console.log("서버요청실패");
+			}
+		})
+        
         
     }
 	

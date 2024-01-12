@@ -15,5 +15,16 @@ public class StoreServiceImpl implements StoreService {
 		
 		return storeDAO.getStoreList(vo);
 	}
+	@Override
+	public StoreVO getStoreInfo(StoreVO vo) {
+		
+		return storeDAO.getStoreInfo(vo);
+	}
+	@Override
+	public StoreVO getLogin(StoreVO vo) {
+		
+		return storeDAO.getLogin(vo);
+	}
+	
 	
 }
