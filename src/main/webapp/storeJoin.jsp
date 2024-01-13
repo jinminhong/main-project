@@ -27,6 +27,7 @@
 					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
 				
+				
 				<div class="form-group">
 					<div>비밀번호</div>
 					<input type="password" name="password" id="password"
@@ -42,26 +43,37 @@
 					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
 				<div class="form-group">
+					<div>가게 설명</div>
+					<input type="text" name="storeDesc" id="storeDesc" class="form-control"
+						required>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				</div>
+				<div class="form-group">
+					<div>자리 수</div>
+					<input type="text" name="spaces" id="spaces" class="form-control"
+						required>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				</div>
+				<div class="form-group">
 					<div>메뉴 1</div>
 					<input type="text" name="menu" id="menu1"
 						class="form-control" required>
 					<div class="valid-feedback">Valid.</div>
 					<div class="invalid-feedback">Please fill out this field.</div>
-				</div>
-				<div class="form-group">
-					<div>메뉴 2</div>
-					<input type="text" name="menu" id="menu2"
+					<div>메뉴 설명</div>
+					<input type="text" name="menuInfo" id="menu1Info"
+						class="form-control" required>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+					<div>메뉴 가격</div>
+					<input type="text" name="menuPrice" id="menu1Price"
 						class="form-control" required>
 					<div class="valid-feedback">Valid.</div>
 					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
-				<div class="form-group">
-					<div>메뉴 3</div>
-					<input type="text" name="menu" id="menu3"
-						class="form-control" required>
-					<div class="valid-feedback">Valid.</div>
-					<div class="invalid-feedback">Please fill out this field.</div>
-				</div>
+				
 				
 				 <div id="dynamicMenuFields">
                 <!-- 동적으로 추가될 메뉴 필드들이 여기에 들어갑니다 -->
@@ -73,15 +85,24 @@
 	</div>
 	<script>
 	$(function () {
-			var i=3;
+			var i=1;
 		$("#addMenu").click(function() {
 			i++;
+			console.log(i);
 			 var newMenuField = '<div class="form-group">' +
-             '<div>메뉴'+i+'</div>' +
-             '<input type="text" name="menu" class="form-control" required>' +
-             '<div class="valid-feedback">Valid.</div>' +
-             '<div class="invalid-feedback">Please fill out this field.</div>' +
-             '</div>';
+		        '<div>메뉴' + i + '</div>' +
+		        '<input type="text" name="menu" class="form-control" required>' +
+		        '<div class="valid-feedback">Valid.</div>' +
+		        '<div class="invalid-feedback">Please fill out this field.</div>' +
+		        '<div>메뉴 설명</div>' +
+		        '<input type="text" name="menuInfo" class="form-control" required>' +
+		        '<div class="valid-feedback">Valid.</div>' +
+		        '<div class="invalid-feedback">Please fill out this field.</div>' +
+		        '<div>메뉴 가격</div>' +
+		        '<input type="text" name="menuPrice" class="form-control" required>' +
+		        '<div class="valid-feedback">Valid.</div>' +
+		        '<div class="invalid-feedback">Please fill out this field.</div>' +
+		        '</div>';
          
          $("#dynamicMenuFields").append(newMenuField);
         	

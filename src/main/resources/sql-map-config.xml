@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.goodtaste.www.user.UserVO" alias="user"></typeAlias>
 		<typeAlias type="com.goodtaste.www.store.StoreVO" alias="store"></typeAlias>
+		<typeAlias type="com.goodtaste.www.menu.MenuVO" alias="menu"></typeAlias> 
 	</typeAliases>
 
 	<!-- Sql Mapper 설정  -->

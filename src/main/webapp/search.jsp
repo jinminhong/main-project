@@ -119,7 +119,7 @@
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=7a8568101b200df8af87438da11f7da1&libraries=services"></script>
 	<script>
 	var ps = new kakao.maps.services.Places(); 
-	var searchkeyword = $("#searchKeyWordHidden").val()+ " 맛집";
+	var searchkeyword = $("#searchKeyWordHidden").val();
 	var searchkeywordHidden=$("#searchKeyWordHidden").val();
 	// 키워드로 장소를 검색합니다
 	ps.keywordSearch(searchkeyword, placesSearchCB); 
@@ -144,7 +144,7 @@
 			data:{"sname":sname},
 			dataType:'json',
 			success: function(result){
-				console.log(result);
+				console.log(result.pic);
 				if(result != 0){
 					let spaces = Number(result.spaces);
 					let spacesInput;
@@ -157,7 +157,7 @@
 							    '<div class="store-detail" style="width: 100%;">' +
 							    '<div class="place_name"><h3>' + data.place_name + '</h3></div>' +
 							    '<div class="category_name">' + category_name + '</div>' +
-							    '<div class="phone">' + data.phone + '02' + '</div>' +
+							    '<div class="phone">' + data.phone +  '</div>' +
 							    '<div class="road_address_name">' + data.road_address_name + '</div>' +
 							    '</div>' +
 							    '</div></a>' +
@@ -174,7 +174,7 @@
 							    '<div class="store-detail" style="width: 100%;">' +
 							    '<div class="place_name"><h3>' + data.place_name + '</h3></div>' +
 							    '<div class="category_name">' + category_name + '</div>' +
-							    '<div class="phone">' + data.phone + '02' + '</div>' +
+							    '<div class="phone">' + data.phone +  '</div>' +
 							    '<div class="road_address_name">' + data.road_address_name + '</div>' +
 							    '</div>' +
 							    '</div></a>' +

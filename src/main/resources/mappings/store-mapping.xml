@@ -19,5 +19,24 @@
 			SELECT * FROM STORE WHERE SNAME=#{sname} AND PASSWORD=#{password}
 		]]>
 	</select>
+	
+	<insert id="insertStoreInfo" parameterType="store">
+		<![CDATA[
+			INSERT INTO STORE(SNAME,PASSWORD,SPACES,STOREDESC) 
+			VALUES(#{sname},#{password},#{spaces},#{storeDesc})
+		]]>
+	</insert>
+	
+	  <insert id="insertMenu" >
+		<![CDATA[
+			INSERT INTO MENU(SNAME,MENU,MENUINFO,MENUPRICE) 
+			VALUES(#{sname},#{foodname},#{foodInfo},#{foodprice})
+		]]>
+	</insert>  
+	<select id="getStoreMenu" resultType="java.util.list">
+		<![CDATA[
+			SELECT * FROM MENU WHERE SNAME = #{sname}
+		]]>
+	</select>
 </mapper>
 

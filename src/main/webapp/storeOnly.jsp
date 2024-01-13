@@ -14,14 +14,14 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${sname eq null}">
+		<c:when test="${store.sname eq null}">
 			<div id="login" style="position: absolute;left: 50%;top: 50%;transform:translate(-50%,-50%);">
 				<form action="storeLogin.do" method="post" style="display:flex; width:500px">
 					<div>
 	                    <label for="sname">Store name:</label><br>
 	                    <input type="text" id="sname" name="sname" style="height:40px;width:250px;border:1px solid black"><br>
 	                    <label for="spassword">Password:</label><br>
-	                    <input type="password" id="spassword" name="spassword" style="height:40px;width:250px;border:1px solid black">           	
+	                    <input type="password" id="spassword" name="password" style="height:40px;width:250px;border:1px solid black">           	
                 	</div>
                 	<div>
 	                    <input type="image" src="img/커비.png" id="Login-btn">

@@ -543,13 +543,13 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="search.do?searchKeyWord=피자">
+					<a href="search.do?searchKeyWord=pizza">
 						<img src="img/피자.png" alt=""/>
 						<p>피자</p>
 					</a>
 				</td>
 				<td>
-					<a href="search.do?searchKeyWord=파스타">
+					<a href="search.do?searchKeyWord=pasta">
 						<img src="img/파스타.png" alt=""/>
 						<p>파스타</p>
 					</a>
@@ -562,7 +562,7 @@
 				</td>
 				<td>
 					<a href="search.do?searchKeyWord=중식">
-						<img src="img/만두.png" alt=""/>
+						<img src="img/만두.png" alt=""/>	
 						<p>중식</p>
 					</a>
 				</td>
