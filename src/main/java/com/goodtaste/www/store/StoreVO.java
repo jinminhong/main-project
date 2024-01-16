@@ -1,5 +1,8 @@
 package com.goodtaste.www.store;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class StoreVO {
 	private String sname;
 	private String genre;
@@ -13,6 +16,15 @@ public class StoreVO {
 	private String storeDesc;
 	private int waitNum;
 	private String password;
+	private Double avg_star;
+	
+	
+	public Double getAvg_star() {
+		return avg_star;
+	}
+	public void setAvg_star(Double avg_star) {
+		this.avg_star = avg_star;
+	}
 	public String getPassword() {
 		return password;
 	}

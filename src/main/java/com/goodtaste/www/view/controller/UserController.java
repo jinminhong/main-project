@@ -73,6 +73,7 @@ public class UserController {
 		}else {
 			session = request.getSession();
 			session.setAttribute("user",userService.getLogin(vo));
+			System.out.println(userService.getLogin(vo).toString());
 			return "index.do";
 		}
 	}

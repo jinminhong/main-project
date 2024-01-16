@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.goodtaste.www.menu.MenuVO;
+import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.store.StoreVO;
+import com.goodtaste.www.user.UserVO;
+import com.goodtaste.www.waiting.WaitingVO;
 
 @Repository
 public class StoreDAO {
@@ -51,6 +54,21 @@ public class StoreDAO {
 	public List<MenuVO> getStoreMenu(MenuVO mvo) {
 		System.out.println("===>mybatis로 getStoremenu기능 처리");
 		return mybatis.selectList("StoreDAO.getStoreMenu",mvo);
+	}
+	
+	public List<ReviewVO> getReview(ReviewVO rv){
+		System.out.println("===>mybatis로 getReview기능 처리");
+		return mybatis.selectList("StoreDAO.getReview",rv);
+	}
+	
+	public void updateSpace(StoreVO vo) {
+		System.out.println("===>mybatis로 updateSpace기능 처리");
+		mybatis.update("StoreDAO.updateSpace",vo);
+	}
+	
+	public void insertWaiting(WaitingVO wv) {
+		System.out.println("===>mybatis로 insertWaiting기능 처리");
+		mybatis.insert("StoreDAO.insertWaiting",wv);
 	}
 
 }

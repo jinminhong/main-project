@@ -6,6 +6,13 @@ public class ReviewVO {
 	private String id;
 	private String review;
 	private String review_img;
+	private Double star;
+	public Double getStar() {
+		return star;
+	}
+	public void setStar(Double star) {
+		this.star = star;
+	}
 	public int getNum() {
 		return num;
 	}

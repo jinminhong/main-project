@@ -14,8 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.goodtaste.www.menu.MenuVO;
+import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.store.StoreVO;
 import com.goodtaste.www.store.impl.StoreService;
+import com.goodtaste.www.user.UserVO;
+import com.goodtaste.www.waiting.WaitingVO;
 
 @Controller
 public class StoreController {
@@ -49,16 +52,16 @@ public class StoreController {
 		}
 	}
 	@RequestMapping(value="storeDetail.do")
-	public String getStoreDetail(StoreVO vo, Model model,MenuVO mvo) {
+	public String getStoreDetail(StoreVO vo, Model model,MenuVO mvo,ReviewVO rv) {
 		StoreVO vo1 = storeService.getStoreInfo(vo);
 		vo1.setSearchKeyWord(vo.getSearchKeyWord());
 		vo1.setGenre(vo.getGenre());
 		vo1.setAddress(vo.getAddress());
 		List<MenuVO> mvo1 = storeService.getStoreMenu(mvo);
+		List<ReviewVO> rv1 = storeService.getReview(rv);
 		model.addAttribute("storeInfo",vo1);
 		model.addAttribute("menu",mvo1);
-		System.out.println("1"+vo1.getSearchKeyWord()+" "+vo1.getSname()+":mvo:"+mvo.getSname());
-		System.out.println(mvo1.get(0).getFoodname());
+		model.addAttribute("review",rv1);
 		return "storeDetail.jsp";
 	}
 	
@@ -91,5 +94,21 @@ public class StoreController {
 		  storeService.insertMenu(mvo); 
 		  return "storeOnly.do"; 
 	  }
-	 
+	  
+	  @RequestMapping(value="book.do")
+	  public String bookUser(UserVO uv,StoreVO vo,Model model) {
+		  StoreVO vo1 = storeService.getStoreInfo(vo);
+		  model.addAttribute("spaces", vo1.getSpaces());
+		  return "book.jsp";
+	  }
+	  
+	  @RequestMapping(value="bookOK.do")
+	  public String bookOKUser(UserVO uv,StoreVO vo,HttpServletRequest request,WaitingVO wv) {
+		  storeService.updateSpace(vo);
+		  HttpSession session = request.getSession();
+		  uv = (UserVO)session.getAttribute("user");
+		  wv.setId(uv.getId());
+		  storeService.insertWaiting(wv);
+		  return "index.do";
+	  }
 }

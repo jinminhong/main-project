@@ -180,8 +180,10 @@
 							    '</div></a>' +
 							    '<div class="additional-info" style="width: 200px; margin-left: 20px;">' +
 							    '<p style="text-align:center">'+spacesInput+'명 대기중입니다.</p>' + 
-							    '<form action="book.do?sname=' + sname+'" method="post">'+
+							    '<form action="book.do" method="post">'+
 							    '<input type="hidden" name="date">'+
+							    '<input type="hidden" name="sname" value="'+sname+'">'+
+							    '<input type="hidden" name="searchKeyWord" value="'+searchkeywordHidden+'">'+
 							    '<input type="hidden" name="memberNum">'+
 							    '<input type="submit" value="줄서기" style="background-color:red;width:100%">'+
 							    '</form>'+

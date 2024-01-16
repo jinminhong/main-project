@@ -10,6 +10,7 @@ public class MenuVO {
 	private String foodname;
 	private String foodprice;
 	private String foodInfo;
+	
 
 	
 	

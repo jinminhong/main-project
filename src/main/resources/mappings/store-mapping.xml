@@ -29,14 +29,27 @@
 	
 	  <insert id="insertMenu" >
 		<![CDATA[
-			INSERT INTO MENU(SNAME,MENU,MENUINFO,MENUPRICE) 
+			INSERT INTO MENU(SNAME,foodname,foodInfo,foodprice) 
 			VALUES(#{sname},#{foodname},#{foodInfo},#{foodprice})
 		]]>
-	</insert>  
-	<select id="getStoreMenu" resultType="java.util.list">
+	</insert> 
+	 
+	<select id="getStoreMenu" resultType="menu">
 		<![CDATA[
 			SELECT * FROM MENU WHERE SNAME = #{sname}
 		]]>
 	</select>
+	
+	<select id="getReview" resultType="review">
+		<![CDATA[
+			SELECT * FROM REVIEW WHERE SNAME = #{sname}
+		]]>
+	</select>
+	
+	<update id="updateSpace">
+		<![CDATA[
+			UPDATE STORE SET SPACES = SPACES - 1 WHERE SNAME = $#{sname}
+		]]>
+	</update>
 </mapper>
 
