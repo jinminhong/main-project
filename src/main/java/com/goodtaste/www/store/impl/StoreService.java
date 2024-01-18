@@ -26,4 +26,18 @@ public interface StoreService {
 	public void updateSpace(StoreVO vo);
 	
 	public void insertWaiting(WaitingVO wv);
+	
+	public List<WaitingVO> getWaitingList(WaitingVO wv);
+	
+	public void outPlusSpaces(StoreVO vo);
+	
+	public void inMinusSpaces(StoreVO vo);
+	
+	public void inUpdateWaiting(WaitingVO wv);
+	
+	public void inMinusWaitingNum(StoreVO vo);
+	
+	public WaitingVO getNo(WaitingVO wv);
+	
+	public void updateLeave(WaitingVO wv);
 }

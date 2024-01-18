@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.goodtaste.www.user.UserVO;
+import com.goodtaste.www.waiting.WaitingVO;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -37,6 +38,18 @@ public class UserServiceImpl implements UserService {
 	public UserVO getLogin(UserVO vo) {
 		
 		return userDAO.getLogin(vo);
+	}
+
+	@Override
+	public List<WaitingVO> getCurrentWaiting(WaitingVO wv) {
+		
+		return userDAO.getCurrentWaiting(wv);
+	}
+
+	@Override
+	public List<WaitingVO> getStoreWaiting(WaitingVO wv) {
+		
+		return userDAO.getStoreWaiting(wv);
 	}
 	
 

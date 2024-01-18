@@ -59,6 +59,40 @@ public class StoreServiceImpl implements StoreService {
 		storeDAO.insertWaiting(wv);
 		
 	}
+	@Override
+	public List<WaitingVO> getWaitingList(WaitingVO wv) {
+		return storeDAO.getWaitingList(wv);
+	}
+	@Override
+	public void outPlusSpaces(StoreVO vo) {
+		storeDAO.outPlusSpaces(vo);
+		
+	}
+	@Override
+	public void inMinusSpaces(StoreVO vo) {
+		storeDAO.inMinusSpaces(vo);
+	}
+	@Override
+	public void inUpdateWaiting(WaitingVO wv) {
+		storeDAO.inUpdateWaiting(wv);
+		
+	}
+	@Override
+	public void inMinusWaitingNum(StoreVO vo) {
+		storeDAO.inMinusWaitingNum(vo);
+		
+	}
+	@Override
+	public WaitingVO getNo(WaitingVO wv) {
+		return storeDAO.getNo(wv);
+		
+	}
+	@Override
+	public void updateLeave(WaitingVO wv) {
+		storeDAO.updateLeave(wv);
+		
+	}
+	
 	
 	
 }

@@ -147,6 +147,7 @@
 				console.log(result.pic);
 				if(result != 0){
 					let spaces = Number(result.spaces);
+					console.log(result.waitingNum);
 					let spacesInput;
 					if(spaces>0){
 						spacesInput = "현재 바로 입장가능합니다.";
@@ -179,7 +180,7 @@
 							    '</div>' +
 							    '</div></a>' +
 							    '<div class="additional-info" style="width: 200px; margin-left: 20px;">' +
-							    '<p style="text-align:center">'+spacesInput+'명 대기중입니다.</p>' + 
+							    '<p style="text-align:center">'+Number(result.waitingNum)+'명 대기중입니다.</p>' + 
 							    '<form action="book.do" method="post">'+
 							    '<input type="hidden" name="date">'+
 							    '<input type="hidden" name="sname" value="'+sname+'">'+

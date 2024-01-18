@@ -70,5 +70,39 @@ public class StoreDAO {
 		System.out.println("===>mybatis로 insertWaiting기능 처리");
 		mybatis.insert("StoreDAO.insertWaiting",wv);
 	}
-
+	
+	public List<WaitingVO> getWaitingList(WaitingVO wv){
+		System.out.println("===>mybatis로 getWaitingList 기능처리");
+		return mybatis.selectList("StoreDAO.getWaitingList",wv);
+	}
+	
+	public void outPlusSpaces(StoreVO vo) {
+		System.out.println("===>mybatis로 outPlusSpaces 기능 처리");
+		mybatis.update("StoreDAO.outPlusSpaces",vo);
+	}
+	
+	public void inMinusSpaces(StoreVO vo) {
+		System.out.println("===>mybatis로 inMinusSpaces 기능 처리");
+		mybatis.update("StoreDAO.inMinusSpaces",vo);
+	}
+	
+	public void inUpdateWaiting(WaitingVO wv) {
+		System.out.println("===>mybatis로 inDeleteWaiting 기능 처리");
+		mybatis.delete("StoreDAO.inUpdateWaiting",wv);
+	}
+	
+	public void inMinusWaitingNum(StoreVO vo) {
+		System.out.println("===>mybatis로 inMinusWaitingNum 기능 처리");
+		mybatis.update("StoreDAO.inMinusWaitingNum",vo);
+	}
+	
+	public WaitingVO getNo(WaitingVO wv) {
+		System.out.println("===>mybatis로 minNo뽑아오기");
+		return mybatis.selectOne("StoreDAO.getNo", wv);
+	}
+	
+	public void updateLeave(WaitingVO wv) {
+		System.out.println("===>mybatis로 updateLeave기능 처리 도망간사람 처리하는거");
+		mybatis.update("StoreDAO.updateLeave",wv);
+	}
 }

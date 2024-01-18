@@ -48,7 +48,58 @@
 	
 	<update id="updateSpace">
 		<![CDATA[
-			UPDATE STORE SET SPACES = SPACES - 1 WHERE SNAME = $#{sname}
+			UPDATE STORE SET WAITINGNUM = WAITINGNUM + 1 WHERE SNAME = #{sname}
+		]]>
+	</update>
+	
+	<insert id="insertWaiting">
+		<![CDATA[
+			INSERT INTO WAITING(SNAME,ID,ANUM,BNUM,TNUM) VALUES(#{sname},#{id},#{aNum},#{bNum},#{tNum})
+		]]>
+	</insert>
+	
+	<select id="getWaitingList" resultType="waiting">
+		<![CDATA[
+			SELECT user.id, user.name, waiting.*
+			FROM user
+			JOIN waiting ON user.id = waiting.id
+			WHERE waiting.sname = #{sname} AND waiting.inorleave = 'yet'
+		]]>
+	</select>
+	 
+	<update id="outPlusSpaces">
+		<![CDATA[
+			UPDATE STORE SET SPACES = SPACES + 1 WHERE SNAME = #{sname}
+		]]>
+	</update>
+	
+	<update id="inMinusSpaces">
+		<![CDATA[
+			UPDATE STORE SET SPACES = SPACES - 1 WHERE SNAME = #{sname}
+		]]>
+	</update>
+	
+	<update id="inUpdateWaiting">
+		<![CDATA[
+			UPDATE WAITING SET INORLEAVE = 'IN' WHERE NO = #{no} AND SNAME = '${sname}';
+		]]>
+	</update>
+	
+	<update id="inMinusWaitingNum">
+		<![CDATA[
+			UPDATE STORE SET WAITINGNUM = WAITINGNUM - 1 WHERE SNAME = #{sname}
+		]]>
+	</update>
+	
+	<select id="getNo" resultType="waiting">
+		<![CDATA[
+			SELECT no FROM WAITING WHERE SNAME = #{sname} AND INORLEAVE='YET' ORDER BY NO ASC LIMIT 1
+		]]>
+	</select>
+	
+	<update id="updateLeave">
+		<![CDATA[
+			UPDATE WAITING SET INORLEAVE = 'LEAVE' WHERE NO = #{no}
 		]]>
 	</update>
 </mapper>

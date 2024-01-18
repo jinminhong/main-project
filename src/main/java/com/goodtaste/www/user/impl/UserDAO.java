@@ -1,11 +1,14 @@
 package com.goodtaste.www.user.impl;
 
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.goodtaste.www.user.UserVO;
+import com.goodtaste.www.waiting.WaitingVO;
 @Repository
 public class UserDAO {
 	@Autowired
@@ -30,5 +33,15 @@ public class UserDAO {
 		System.out.println(vo.getId());
 		System.out.println(vo.getPassword());
 		return (UserVO)mybatis.selectOne("UserDAO.getLogin",vo);
+	}
+	
+	public List<WaitingVO> getCurrentWaiting(WaitingVO wv){
+		System.out.println("===>my batis로 getCurrentWaiting()기능 처리");
+		return mybatis.selectList("UserDAO.getCurrentWaiting",wv);
+	}
+	
+	public List<WaitingVO> getStoreWaiting(WaitingVO wv){
+		System.out.println("===>mybatis로 getStoreWaiting() 기능 처리 유저가 웨이팅 등록한 가게들의 웨이팅 정보 가져오기");
+		return mybatis.selectList("UserDAO.getStoreWaiting",wv);
 	}
 }

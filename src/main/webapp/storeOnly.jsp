@@ -32,8 +32,29 @@
 		</c:when>
 		<c:otherwise>
 			<div id="in-and-out" style="position: absolute;left: 50%;top: 50%;transform:translate(-50%,-50%);">
-				<a href="#" class="btn">입장</a>
-				<a href="#" class="btn">퇴장</a>			
+				<a href="inStore.do?sname=${store.sname}" class="btn">입장</a>
+				<a href="outStore.do?sname=${store.sname}" class="btn">퇴장</a>			
+			</div>
+			<div class="waitingList">
+				<table>
+					<caption>현재 웨이팅 정보</caption>
+					<tr>
+						<th>이름</th>
+						<th>성인</th>
+						<th>유아</th>
+						<th>총 인원</th>
+						<th>안옴</th>
+					</tr>
+					<c:forEach var="waitingList" items="${waitingList}">
+						<tr>
+							<td>${waitingList.name }</td>
+							<td>${waitingList.aNum }</td>
+							<td>${waitingList.bNum }</td>
+							<td>${waitingList.tNum }</td>
+							<td><a href="leaveStore.do?num=${waitingList.no}&sname=${store.sname}"><button>안옴</button></a></td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</c:otherwise>
 	</c:choose>

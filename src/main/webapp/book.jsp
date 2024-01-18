@@ -30,7 +30,7 @@
 					<div>
 						<a href="#" class="round-button" id="adult-desc">-</a>
 		        		<span id="counterAdult">0</span>
-		        		<input type="hidden" name="adultNum" id="adultNum">
+		        		<input type="hidden" name="adultNum" id="adultNum" value="0">
 		        		<a href="#"class="round-button" id="adult-asc">+</a>				
 					</div>
 				</div>
@@ -39,11 +39,11 @@
 					<div>
 						<a href="#" class="round-button" id="baby-desc" >-</a>
 		        		<span id="counterBaby">0</span>
-		        		<input type="hidden" name="babyNum">
+		        		<input type="hidden" name="babyNum" id="babyNum" value="0">
 		        		<a href="#" class="round-button" id="baby-asc">+</a>				
 					</div>							
 				</div>
-				<input type="hidden" name="totalNum" id="totalNum">
+				<input type="hidden" name="totalNum" id="totalNum" value="0">
 				<input type="hidden" name="sname" value="${param.sname}">
 				<div class="container fixed-bottom">
 				<div style="display:flex;justify-content: space-between;">
@@ -56,7 +56,7 @@
 				<div class="container" style="margin-top: 50px">
 					<div style="text-align:center;color:#fc6868;">
 						<h3 style="margin-bottom:30px">현재 웨이팅</h3>
-						<h3>${Math.abs(spaces)}팀</h3>					
+						<h3>${waitingNum}팀</h3>					
 					</div>
 				</div>
 		</div>

@@ -17,8 +17,15 @@ public class StoreVO {
 	private int waitNum;
 	private String password;
 	private Double avg_star;
+	private int waitingNum;
 	
 	
+	public int getWaitingNum() {
+		return waitingNum;
+	}
+	public void setWaitingNum(int waitingNum) {
+		this.waitingNum = waitingNum;
+	}
 	public Double getAvg_star() {
 		return avg_star;
 	}
@@ -100,6 +107,7 @@ public class StoreVO {
 	public String toJson() {
 		return "{"
 				+ "	\"pic\" : \"" + pic+"\","
+				+ "	\"waitingNum\" : \""+waitingNum+"\","
 				+ "	\"spaces\" : \""+spaces+"\""
 				+ "}";
 	}

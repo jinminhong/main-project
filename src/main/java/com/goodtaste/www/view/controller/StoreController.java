@@ -66,17 +66,22 @@ public class StoreController {
 	}
 	
 	  @RequestMapping(value="storeOnly.do") 
-	  public String storeOnly() { 
-		  return "redirect:storeOnly.jsp"; 
+	  public String storeOnly(WaitingVO wv,HttpSession session,HttpServletRequest request) {
+		  session = request.getSession(); 
+		  List<WaitingVO> list = storeService.getWaitingList(wv);
+		  session.setAttribute("waitingList", list);
+		  return "storeOnly.jsp"; 
 	  }
 	  
 	  @RequestMapping(value="storeLogin.do") 
-	  public String getStoreLogin(StoreVO vo,HttpSession session,HttpServletRequest request) { 
+	  public String getStoreLogin(StoreVO vo,HttpSession session,HttpServletRequest request,WaitingVO wv) { 
 		  session = request.getSession(); 
 		  System.out.println(vo.getSname() +":" + vo.getPassword()); 
 		  StoreVO vo1 = storeService.getLogin(vo);
 		  session.setAttribute("store", vo1); 
-		  System.out.println(vo1.getSname() +":" + vo1.getPassword()); 
+		  System.out.println(vo1.getSname() +":" + vo1.getPassword());
+		  List<WaitingVO> list = storeService.getWaitingList(wv);
+		  session.setAttribute("waitingList", list);
 		  return "storeOnly.do"; 
 	  }
 	  
@@ -95,20 +100,72 @@ public class StoreController {
 		  return "storeOnly.do"; 
 	  }
 	  
-	  @RequestMapping(value="book.do")
-	  public String bookUser(UserVO uv,StoreVO vo,Model model) {
-		  StoreVO vo1 = storeService.getStoreInfo(vo);
-		  model.addAttribute("spaces", vo1.getSpaces());
-		  return "book.jsp";
-	  }
-	  
 	  @RequestMapping(value="bookOK.do")
-	  public String bookOKUser(UserVO uv,StoreVO vo,HttpServletRequest request,WaitingVO wv) {
+	  public String bookOKUser(UserVO uv,StoreVO vo,WaitingVO wv,HttpServletRequest request) {
 		  storeService.updateSpace(vo);
 		  HttpSession session = request.getSession();
 		  uv = (UserVO)session.getAttribute("user");
 		  wv.setId(uv.getId());
+		  wv.setaNum(Integer.parseInt(wv.getAdultNum()));
+		  wv.setbNum(Integer.parseInt(wv.getBabyNum()));
+		  wv.settNum(Integer.parseInt(wv.getTotalNum()));
 		  storeService.insertWaiting(wv);
+		  request.setAttribute("bookOKMessage", "예약완료");
 		  return "index.do";
 	  }
+	  
+	  @RequestMapping(value="book.do")
+	  public String bookUser(UserVO uv,StoreVO vo,Model model,HttpSession session,HttpServletRequest request) {
+		  session = request.getSession();
+		  
+		  if(session.getAttribute("user")==null) {
+			  String messageLogin = "로그인을 해주세요";
+			  request.setAttribute("messageLogin", messageLogin);
+			  return "index.jsp";
+		  }
+		  StoreVO vo1 = storeService.getStoreInfo(vo);
+		  model.addAttribute("waitingNum", vo1.getWaitingNum());
+		  return "book.jsp";
+	  }
+	  
+	  
+	  @RequestMapping(value="outStore.do")
+	  public String outStore(StoreVO vo) {
+		  StoreVO vo1 = storeService.getStoreInfo(vo);
+		  storeService.outPlusSpaces(vo1);
+		  return "storeOnly.do";
+	  }
+	  
+	  @RequestMapping(value="inStore.do")
+	  public String inStore(StoreVO vo,WaitingVO wv) {
+		  StoreVO vo1 = storeService.getStoreInfo(vo);
+		  if(vo1.getWaitingNum()<=0) {
+			  storeService.inMinusSpaces(vo);
+		  }else {
+			  storeService.inMinusSpaces(vo);
+			  storeService.inMinusWaitingNum(vo);
+			  WaitingVO wv1 = storeService.getNo(wv);
+			  System.out.println(wv1.getNo());
+			  wv1.setSname(wv.getSname());
+			  storeService.inUpdateWaiting(wv1);
+		  }
+		  return "storeOnly.do";
+	  }
+	  
+	  @RequestMapping(value="leaveStore.do")
+	  public String updateLeave(WaitingVO wv,StoreVO vo) {
+		  storeService.inMinusWaitingNum(vo);
+		  wv.setNo(Integer.parseInt(wv.getNum()));
+		  storeService.updateLeave(wv);
+		  return "storeOnly.do";
+	  }
+	  
+	  @RequestMapping(value="myLocation.do")
+	  public String myLocationStore() {
+		  System.out.println("gkgkgk");
+		  return "myLocation.jsp";
+	  }
+	  
+	  
+	  
 }

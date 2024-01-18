@@ -27,4 +27,15 @@
 		SELECT * FROM USER WHERE ID=#{id} AND PASSWORD=#{password}
 	</select>
 
+	<select id="getCurrentWaiting" resultType="waiting">
+		<![CDATA[
+			SELECT * FROM WAITING WHERE ID = #{id} AND INORLEAVE = 'YET'
+		]]>
+	</select>
+	
+	<select id="getStoreWaiting" resultType="waiting">
+		<![CDATA[
+			SELECT * FROM WAITING WHERE SNAME = #{sname}
+		]]>
+	</select>
 </mapper>
