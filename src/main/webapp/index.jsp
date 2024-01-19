@@ -11,6 +11,11 @@
 <link rel="stylesheet" href="css/project.css" />
 </head>
 <body>
+	<c:if test="${reviewMessage ne null }">
+		<script>
+			alert("리뷰 작성 완료");
+		</script>
+	</c:if>
 	<c:if test="${message ne null}">
 		<script>
 			alert("아이디 비번이 맞지 않거나 없습니다");
@@ -529,7 +534,7 @@
                 <div class="loginProfile">
                 	<div>안녕하세요. ${user.nickname}님</div>
                 	<div><a href="currentWaiting.do">웨이팅 현황</a></div>
-                	<div><a href="#">리뷰 쓰러가기</a></div>
+                	<div><a href="review.do">리뷰 쓰러가기</a></div>
                 	<div><a href="#">회원정보 수정</a></div>
                 	<div><a href="logout.do">로그아웃</a></div>
                 </div>

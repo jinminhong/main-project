@@ -105,4 +105,9 @@ public class StoreDAO {
 		System.out.println("===>mybatis로 updateLeave기능 처리 도망간사람 처리하는거");
 		mybatis.update("StoreDAO.updateLeave",wv);
 	}
+	
+	public void updateStar(ReviewVO rv) {
+		System.out.println("===>mybatis로 updateStar기능 처리");
+		mybatis.update("StoreDAO.updateStar",rv);
+	}
 }

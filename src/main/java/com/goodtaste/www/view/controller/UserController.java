@@ -11,9 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.goodtaste.www.review.ReviewVO;
+import com.goodtaste.www.store.StoreVO;
 import com.goodtaste.www.user.UserVO;
 import com.goodtaste.www.user.impl.UserService;
 import com.goodtaste.www.waiting.WaitingVO;
@@ -114,4 +118,34 @@ public class UserController {
 		return "currentWaiting.jsp";
 	}
 	
+	@RequestMapping(value="review.do")
+	public String getReviewList(UserVO uv,WaitingVO wv, HttpSession session, HttpServletRequest request,Model model) {
+		session = request.getSession();
+		uv = (UserVO)session.getAttribute("user");
+		wv.setId(uv.getId());
+		List<WaitingVO> list = userService.getReviewList(wv);
+		System.out.println(list.get(0).getNo());
+		model.addAttribute("reviewList", list);
+		return "review.jsp";
+	}
+	
+	@RequestMapping(value="storeReview.do")
+	public String storeReview(UserVO uv,StoreVO vo,WaitingVO wv,ReviewVO rv,HttpServletRequest request) {
+		System.out.println(wv.getNo());
+		request.setAttribute("store", wv);
+		return "storeReview.jsp";
+	}
+	
+	@RequestMapping(value="storeReviewOK.do")
+	public String insertReview(ReviewVO rv,WaitingVO wv,HttpServletRequest request,HttpSession session) {
+		session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("user");
+		rv.setId(vo.getId());
+		System.out.println("storeReviewOK "+wv.getNo());
+		userService.insertReview(rv);
+		userService.updateReviewOKWaiting(wv);
+		request.setAttribute("reviewMessage", "리뷰 작성완료");
+		
+		return "index.do";
+	}
 }

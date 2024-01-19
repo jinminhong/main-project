@@ -102,5 +102,13 @@
 			UPDATE WAITING SET INORLEAVE = 'LEAVE' WHERE NO = #{no}
 		]]>
 	</update>
+	
+	<update id="updateStar">
+		<![CDATA[
+			UPDATE STORE
+			SET AVG_STAR = (SELECT AVG(star) FROM REVIEW WHERE SNAME = #{sname})
+			WHERE SNAME = #{sname}
+		]]>
+	</update>
 </mapper>
 

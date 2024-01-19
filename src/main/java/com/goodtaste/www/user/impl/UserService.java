@@ -2,6 +2,7 @@ package com.goodtaste.www.user.impl;
 
 import java.util.List;
 
+import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.user.UserVO;
 import com.goodtaste.www.waiting.WaitingVO;
 
@@ -19,4 +20,10 @@ public interface UserService {
 	List<WaitingVO> getCurrentWaiting(WaitingVO wv);
 	
 	List<WaitingVO> getStoreWaiting(WaitingVO wv);
+	
+	List<WaitingVO> getReviewList(WaitingVO wv);
+	
+	void insertReview(ReviewVO rv);
+	
+	void updateReviewOKWaiting(WaitingVO wv);
 }

@@ -40,4 +40,6 @@ public interface StoreService {
 	public WaitingVO getNo(WaitingVO wv);
 	
 	public void updateLeave(WaitingVO wv);
+	
+	public void updateStar(ReviewVO rv);
 }

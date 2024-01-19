@@ -92,6 +92,11 @@ public class StoreServiceImpl implements StoreService {
 		storeDAO.updateLeave(wv);
 		
 	}
+	@Override
+	public void updateStar(ReviewVO rv) {
+		storeDAO.updateStar(rv);
+		
+	}
 	
 	
 	

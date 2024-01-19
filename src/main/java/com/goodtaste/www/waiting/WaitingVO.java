@@ -1,5 +1,7 @@
 package com.goodtaste.www.waiting;
 
+import java.sql.Timestamp;
+
 public class WaitingVO {
 	private String sname;
 	private String id;
@@ -13,7 +15,14 @@ public class WaitingVO {
 	private String name;
 	private int no;
 	private String num;
+	private Timestamp waitingtime;
 	
+	public Timestamp getWaitingtime() {
+		return waitingtime;
+	}
+	public void setWaitingtime(Timestamp waitingtime) {
+		this.waitingtime = waitingtime;
+	}
 	public String getNum() {
 		return num;
 	}

@@ -35,7 +35,25 @@
 	
 	<select id="getStoreWaiting" resultType="waiting">
 		<![CDATA[
-			SELECT * FROM WAITING WHERE SNAME = #{sname}
+			SELECT * FROM WAITING WHERE SNAME = #{sname} AND INORLEAVE = 'YET'
 		]]>
 	</select>
+	
+	<select id="getReviewList" resultType="waiting">
+		<![CDATA[
+			SELECT * FROM WAITING WHERE ID = #{id} AND INORLEAVE = 'IN' AND REVIEWOK = 'YET'
+		]]>
+	</select>
+	
+	<insert id="insertReview">
+		<![CDATA[
+			INSERT INTO REVIEW(SNAME,ID,REVIEW,STAR) VALUES(#{sname},#{id},#{review},#{star})
+		]]>
+	</insert>
+	
+	<update id="updateReviewOKWaiting">
+		<![CDATA[
+			UPDATE WAITING SET REVIEWOK = 'OK' WHERE NO = #{no}
+		]]>
+	</update>
 </mapper>

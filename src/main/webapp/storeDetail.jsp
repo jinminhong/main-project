@@ -147,7 +147,7 @@ padding-right:40px;
 			<c:when test="${storeInfo.spaces le '0'}">
 				<form action ="book.do" method="post">
 					<input type="hidden" name="sname" value="${storeInfo.sname}">
-					<input type="submit" value="줄서기" style="width:100%">
+					<input type="submit" value="줄서기" style="width:100%;background-color:red">
 				</form>		
 			</c:when>
 			<c:otherwise>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.user.UserVO;
 import com.goodtaste.www.waiting.WaitingVO;
 @Service("userService")
@@ -51,6 +52,25 @@ public class UserServiceImpl implements UserService {
 		
 		return userDAO.getStoreWaiting(wv);
 	}
+
+	@Override
+	public List<WaitingVO> getReviewList(WaitingVO wv) {
+		
+		return userDAO.getReviewList(wv);
+	}
+
+	@Override
+	public void insertReview(ReviewVO rv) {
+		userDAO.insertReview(rv);
+		
+	}
+
+	@Override
+	public void updateReviewOKWaiting(WaitingVO wv) {
+		userDAO.updateReviewOKWaiting(wv);
+		
+	}
+	
 	
 
 }

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.user.UserVO;
 import com.goodtaste.www.waiting.WaitingVO;
 @Repository
@@ -43,5 +44,20 @@ public class UserDAO {
 	public List<WaitingVO> getStoreWaiting(WaitingVO wv){
 		System.out.println("===>mybatis로 getStoreWaiting() 기능 처리 유저가 웨이팅 등록한 가게들의 웨이팅 정보 가져오기");
 		return mybatis.selectList("UserDAO.getStoreWaiting",wv);
+	}
+	
+	public List<WaitingVO> getReviewList(WaitingVO wv){
+		System.out.println("===>mybatis로 getReviews가져옴");
+		return mybatis.selectList("UserDAO.getReviewList",wv);
+	}
+	
+	public void insertReview(ReviewVO rv) {
+		System.out.println("===>mybatis로 insertReview 기능 처리");
+		mybatis.insert("UserDAO.insertReview",rv);
+	}
+	
+	public void updateReviewOKWaiting(WaitingVO wv) {
+		System.out.println("===>mybatis로 updateReviewOKWaiting기능 처리");
+		mybatis.update("UserDAO.updateReviewOKWaiting",wv);
 	}
 }
