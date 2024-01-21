@@ -79,14 +79,18 @@ public class StoreController {
 	  }
 	  
 	  @RequestMapping(value="storeLogin.do") 
-	  public String getStoreLogin(StoreVO vo,HttpSession session,HttpServletRequest request,WaitingVO wv) { 
+	  public String getStoreLogin(StoreVO vo,HttpSession session,HttpServletRequest request,WaitingVO wv,MenuVO mvo) { 
 		  session = request.getSession(); 
 		  System.out.println(vo.getSname() +":" + vo.getPassword()); 
 		  StoreVO vo1 = storeService.getLogin(vo);
 		  session.setAttribute("store", vo1); 
 		  System.out.println(vo1.getSname() +":" + vo1.getPassword());
+		  System.out.println(vo1.getAbSpaces());
 		  List<WaitingVO> list = storeService.getWaitingList(wv);
+		  List<MenuVO> menuList = storeService.getStoreMenu(mvo);
+		  System.out.println(menuList.get(0).getFoodname());
 		  session.setAttribute("waitingList", list);
+		  request.setAttribute("menuList", menuList);
 		  return "storeOnly.do"; 
 	  }
 	  

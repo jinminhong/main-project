@@ -18,8 +18,15 @@ public class StoreVO {
 	private String password;
 	private Double avg_star;
 	private int waitingNum;
+	private int abSpaces;
 	
 	
+	public int getAbSpaces() {
+		return abSpaces;
+	}
+	public void setAbSpaces(int abSpaces) {
+		this.abSpaces = abSpaces;
+	}
 	public int getWaitingNum() {
 		return waitingNum;
 	}

@@ -7,10 +7,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-
-<link href="css/storeOnly.css">
 <script src="js/jquery.js"></script>
-
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="css/storeOnly.css">
+<script src="js/storeOnly.js"></script>
 </head>
 <body>
 	<c:choose>
@@ -31,10 +34,15 @@
 			</div>	
 		</c:when>
 		<c:otherwise>
-			<div id="in-and-out" style="position: absolute;left: 50%;top: 50%;transform:translate(-50%,-50%);">
-				<a href="inStore.do?sname=${store.sname}" class="btn">입장</a>
-				<a href="outStore.do?sname=${store.sname}" class="btn">퇴장</a>			
-			</div>
+		<div style="display:flex">
+			<section id="section">
+				<div class="container">
+					<c:forEach var="i" begin="0" end="4">
+						<div class="box"></div>							
+					</c:forEach>
+	
+				</div>
+			</section>
 			<div class="waitingList">
 				<table>
 					<caption>현재 웨이팅 정보</caption>
@@ -56,7 +64,66 @@
 					</c:forEach>
 				</table>
 			</div>
+		</div>
+		<div class="modal fade" id="myModal">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	      
+	        <!-- Modal Header -->
+	        <div class="modal-header">
+	          <h4 class="modal-title">Modal Heading</h4>
+	          <button type="button" class="close" data-dismiss="modal">×</button>
+	        </div>
+	        
+	        <!-- Modal body -->
+	        <div class="modal-body">
+	        	<h3>메뉴</h3>
+	        	<hr>
+	        	<c:forEach var="menuList" items="${menuList}">
+		        	<div class="menuList" style="display:flex;justify-content: space-between">
+			        	<div>
+			        		${menuList.foodname}
+			        	</div>
+			        	<div>
+			        		<a href="#" class="round-button min-price" data-value="${menuList.foodprice}">-</a><span class="food-price">${menuList.foodprice}</span><a href="#"class="round-button add-price" data-value="${menuList.foodprice}" >+</a>
+			        	</div>
+		        	</div>	        	
+	        	</c:forEach>
+	        	<div style="display:flex;justify-content: space-between"><span>합계</span><span class="total-price">0</span></div>
+	        </div>
+	        
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">계산</button>
+	        </div>
+	        
+	      </div>
+	    </div>
+  	</div>
 		</c:otherwise>
 	</c:choose>
+	<script>
+	$(function () {
+		var total = 0;
+		 $(".add-price").on("click", function() {
+	            
+	            var value = parseInt($(this).data("value"), 10);
+	            total += value;
+				console.log("a")
+	            
+	            $(".total-price").text(total);
+	        });
+		 
+		 $(".min-price").on("click", function() {
+	            
+	            var value = parseInt($(this).data("value"), 10);
+	            total -= value;
+				console.log("b")
+	            
+	            $(".total-price").text(total);
+	        });
+		
+	})
+	</script>
 </body>
 </html>
