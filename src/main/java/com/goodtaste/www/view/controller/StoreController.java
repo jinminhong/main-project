@@ -2,6 +2,7 @@ package com.goodtaste.www.view.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -90,7 +91,7 @@ public class StoreController {
 		  List<MenuVO> menuList = storeService.getStoreMenu(mvo);
 		  System.out.println(menuList.get(0).getFoodname());
 		  session.setAttribute("waitingList", list);
-		  request.setAttribute("menuList", menuList);
+		  session.setAttribute("menuList", menuList);
 		  return "storeOnly.do"; 
 	  }
 	  
@@ -110,34 +111,123 @@ public class StoreController {
 	  }
 	  
 	  @RequestMapping(value="outStore.do")
-	  public String outStore(StoreVO vo) {
+	  public void outStore(StoreVO vo,WaitingVO wv,HttpServletResponse response) {
+		  response.setCharacterEncoding("UTF-8");
 		  StoreVO vo1 = storeService.getStoreInfo(vo);
 		  storeService.outPlusSpaces(vo1);
-		  return "redirect:storeOnly.do?sname="+vo1.getSname();
+		  List<WaitingVO> list = new ArrayList<WaitingVO>();
+		  String jsonWaitingList = "{\"waitingList\":[";
+		  list = storeService.getWaitingList(wv);
+		  for(int i = 0;i<list.size();i++) {
+			  jsonWaitingList += list.get(i).toJson();
+			  if(i!=list.size()-1) {
+				  jsonWaitingList +=",";
+			  }
+		  }
+		  jsonWaitingList +="]}";
+		  PrintWriter out;
+		  try {
+			out = response.getWriter();
+			out.write(jsonWaitingList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  }
 	  
 	  @RequestMapping(value="inStore.do")
-	  public String inStore(StoreVO vo,WaitingVO wv) {
+	  public void inStore(StoreVO vo,WaitingVO wv,HttpServletResponse response,HttpSession session,HttpServletRequest request) {
+		  response.setCharacterEncoding("UTF-8");
+		  session = request.getSession();
+		  List<WaitingVO> list = new ArrayList<WaitingVO>();
+		  String jsonWaitingList = "{\"waitingList\":[";
+		  System.out.println("inStore.do"+vo.getSname());
 		  StoreVO vo1 = storeService.getStoreInfo(vo);
-		  if(vo1.getWaitingNum()<=0) {
+		  //웨이팅없을 때
+		  if(vo1.getWaitingNum()==0) {
 			  storeService.inMinusSpaces(vo);
-		  }else {
+			  
+		  }else if(vo1.getWaitingNum()>0){//웨이팅있을 때
 			  storeService.inMinusSpaces(vo);
 			  storeService.inMinusWaitingNum(vo);
 			  WaitingVO wv1 = storeService.getNo(wv);
 			  System.out.println(wv1.getNo());
 			  wv1.setSname(wv.getSname());
 			  storeService.inUpdateWaiting(wv1);
+			  list = storeService.getWaitingList(wv);
+			  
+			  for(int i = 0;i<list.size();i++) {
+				  jsonWaitingList += list.get(i).toJson();
+				  if(i!=list.size()-1) {
+					  jsonWaitingList +=",";
+				  }
+			  }
+			  
+		      System.out.println(jsonWaitingList);
+			  session.setAttribute("waitingList", list);
+			  
 		  }
-		  return "redirect:storeOnly.do?sname="+vo1.getSname();
+		  jsonWaitingList +="]}";
+		  PrintWriter out;
+		  try {
+			out = response.getWriter();
+			out.write(jsonWaitingList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
 	  }
 	  
 	  @RequestMapping(value="leaveStore.do")
-	  public String updateLeave(WaitingVO wv,StoreVO vo) {
+	  public void updateLeave(WaitingVO wv,StoreVO vo,HttpServletResponse response) {
+		  response.setCharacterEncoding("UTF-8");
+		  List<WaitingVO> list = new ArrayList<WaitingVO>();
 		  storeService.inMinusWaitingNum(vo);
-		  wv.setNo(Integer.parseInt(wv.getNum()));
+		  System.out.println(wv.getNo());
 		  storeService.updateLeave(wv);
-		  return "redirect:storeOnly.do?sname="+vo.getSname();
+		  list = storeService.getWaitingList(wv);
+		  String jsonWaitingList = "{\"waitingList\":[";
+		  for(int i = 0;i<list.size();i++) {
+			  jsonWaitingList += list.get(i).toJson();
+			  if(i!=list.size()-1) {
+				  jsonWaitingList +=",";
+			  }
+		  }
+		  jsonWaitingList +="]}";
+		  System.out.println(jsonWaitingList);
+		  PrintWriter out;
+		  try {
+			out = response.getWriter();
+			out.write(jsonWaitingList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+	  }
+	  
+	  @RequestMapping(value="intervalWaiting.do")
+	  public void intervalWaiting(WaitingVO wv,StoreVO vo,HttpServletResponse response) {
+		  response.setCharacterEncoding("UTF-8");
+		  List<WaitingVO> list = new ArrayList<WaitingVO>();
+		  list = storeService.getWaitingList(wv);
+		  String jsonWaitingList = "{\"waitingList\":[";
+		  for(int i = 0;i<list.size();i++) {
+			  jsonWaitingList += list.get(i).toJson();
+			  if(i!=list.size()-1) {
+				  jsonWaitingList +=",";
+			  }
+		  }
+		  jsonWaitingList +="]}";
+		  PrintWriter out;
+		  try {
+			out = response.getWriter();
+			out.write(jsonWaitingList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  }
 	  
 	  //여기까지

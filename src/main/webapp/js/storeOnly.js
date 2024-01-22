@@ -28,7 +28,22 @@ window.addEventListener("load",function(){
 	
 	container.onmouseup = function(e){
 		dragging = false;
+		sname = $("#hiddenSname").val();
 		if(e.target.classList.contains("box")&!isDrag&!e.target.classList.contains("active")){
+			if(!e.target.classList.contains("active")){
+				e.target.classList.add("active");
+			$.ajax({
+				url:"inStore.do",
+				type:"post",
+				data:{"sname":sname},
+				dataType:'json',
+				success: function(waitingListData){
+					
+				}
+				
+				});
+				
+			}
         	 $("#myModal").modal("toggle");
       }
 	};

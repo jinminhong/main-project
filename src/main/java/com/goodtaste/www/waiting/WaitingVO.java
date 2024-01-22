@@ -95,4 +95,14 @@ public class WaitingVO {
 	public void setTotalNum(String totalNum) {
 		this.totalNum = totalNum;
 	}
+	
+	public String toJson() {
+		return "{"
+				+"\"name\" : \"" + name +"\","
+				+"\"aNum\" : \"" + aNum +"\","
+				+"\"bNum\" : \"" + bNum +"\","
+				+"\"tNum\" : \"" + tNum +"\","
+				+"\"no\" :\""+no+"\""
+				+"}";
+	}
 }

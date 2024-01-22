@@ -147,9 +147,10 @@
 				console.log(result.pic);
 				if(result != 0){
 					let spaces = Number(result.spaces);
+					let waitingNum = Number(result.waitingNum);
 					console.log(result.waitingNum);
 					let spacesInput;
-					if(spaces>0){
+					if(spaces>0&waitingNum==0){
 						spacesInput = "현재 바로 입장가능합니다.";
 						var storeNode = $('<div class="store-container" style="display:flex; margin-bottom: 20px; width: 100%;">' +
 							    '<a href="storeDetail.do?sname=' + sname + '&genre='+category_name+'&address='+data.road_address_name+'&phone='+data.phone+'&waitNum='+0+'&searchKeyWord='+searchkeywordHidden+'" style="text-decoration-line: none; color:black; width: 70%;">' +
