@@ -110,5 +110,29 @@
 			WHERE SNAME = #{sname}
 		]]>
 	</update>
+	
+	<select id="bookMarkCheck" resultType="bookMark">
+		<![CDATA[
+			SELECT * FROM BOOKMARK WHERE SNAME = #{sname} AND ID = #{id}
+		]]>
+	</select>
+	
+	<insert id="insertBookMark">
+		<![CDATA[
+			INSERT INTO BOOKMARK(ID,SNAME) VALUES(#{id},#{sname})
+		]]>
+	</insert>
+	
+	<delete id="deleteBookMark">
+		<![CDATA[
+			DELETE FROM BOOKMARK WHERE SNAME = #{sname} AND ID = #{id}
+		]]>
+	</delete>
+	
+	<select id="bookMarkUser" resultType="bookMark">
+		<![CDATA[
+			SELECT * FROM BOOKMARK WHERE ID = #{id}
+		]]>
+	</select>
 </mapper>
 

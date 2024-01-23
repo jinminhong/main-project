@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.goodtaste.www.bookmark.BookMarkVO;
 import com.goodtaste.www.menu.MenuVO;
 import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.store.StoreVO;
@@ -97,6 +98,27 @@ public class StoreServiceImpl implements StoreService {
 		storeDAO.updateStar(rv);
 		
 	}
+	@Override
+	public BookMarkVO bookMarkCheck(BookMarkVO bv) {
+		
+		return storeDAO.bookMarkCheck(bv);
+	}
+	@Override
+	public void insertBookMark(BookMarkVO bv) {
+		storeDAO.insertBookMark(bv);
+		
+	}
+	@Override
+	public void deleteBookMark(BookMarkVO bv) {
+		storeDAO.deleteBookMark(bv);
+		
+	}
+	@Override
+	public List<BookMarkVO> bookMarkUser(BookMarkVO bv) {
+		return storeDAO.bookMarkUser(bv);
+		
+	}
+	
 	
 	
 	

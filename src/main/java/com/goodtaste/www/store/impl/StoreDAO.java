@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.goodtaste.www.bookmark.BookMarkVO;
 import com.goodtaste.www.menu.MenuVO;
 import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.store.StoreVO;
@@ -109,5 +110,25 @@ public class StoreDAO {
 	public void updateStar(ReviewVO rv) {
 		System.out.println("===>mybatis로 updateStar기능 처리");
 		mybatis.update("StoreDAO.updateStar",rv);
+	}
+	public BookMarkVO bookMarkCheck(BookMarkVO bv) {
+		System.out.println("===>mybatis로 bookMarkToggle기능 처리");
+		return mybatis.selectOne("StoreDAO.bookMarkCheck",bv);
+	}
+	
+	public void insertBookMark(BookMarkVO bv) {
+		System.out.println("===>mybatis로 insertBookMark기능 처리");
+		mybatis.insert("StoreDAO.insertBookMark",bv);
+	}
+	
+	public void deleteBookMark(BookMarkVO bv) {
+		System.out.println("===>mybatis로 deleteBookMark기능 처리");
+		mybatis.delete("StoreDAO.deleteBookMark",bv);
+	}
+	
+	public List<BookMarkVO> bookMarkUser(BookMarkVO bv) {
+		System.out.println("===>mybatis로 bookMarkUser 기능 처리");
+		return mybatis.selectList("StoreDAO.bookMarkUser",bv);
+		
 	}
 }

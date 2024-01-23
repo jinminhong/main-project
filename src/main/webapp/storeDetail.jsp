@@ -34,16 +34,17 @@ padding-right:40px;
 <body>
 	<input id = "inputSname" type="hidden" value="${param.sname}">
 	<input id="inputAddress" type="hidden" value="${param.address}">
+	<input id = "inputId" type="hidden" value="${user.id}">
 	<div class="container fixed-top">
 		<nav class="navbar navbar-expand-sm back" style="background-color:white">
 			<header>
 				<div>
-					<a href="search.do?searchKeyWord=${storeInfo.searchKeyWord}" style="margin-right:20px"> <img src="img/뒤로가기.png" alt"">
+					<a href="javascript:history.back()" style="margin-right:20px"> <img src="img/뒤로가기.png" alt"">
 					</a>
 					<a href="index.do"><img src="img/홈.png" alt=""></a>
 				</div>
 				<div>
-					<a href="#" style="margin-right:20px"><img src="img/북마크.png" alt=""></a>
+					<a href="#" id="bookMark" style="margin-right:20px"><img src="img/북마크.png" alt=""></a>
 					<a href="#"><img src="img/공유.png" alt=""></a>
 				</div>				
 			</header>
@@ -218,5 +219,41 @@ function displayMarker(place) {
         infowindow.open(map, marker);
     });
 }
+</script>
+<script>
+	$(function(){
+		let id = $('#inputId').val();
+		let sname = $('#inputSname').val();
+		$.ajax({
+	        url:"bookMark1.do",
+	        type:"post",
+	        data:{"sname":sname,"id":id},
+	        dataType:'text',
+	        success: function(data){
+	        	console.log(data+"load");
+	        	if(data==0){
+	        		$("#bookMark > img").attr("src", "img/북마크 했을 때.png");
+	        	}else{
+	        		$("#bookMark > img").attr("src","img/북마크.png");
+	        	}
+	        }
+		})
+		$("#bookMark").on("click",function(){
+			$.ajax({
+		        url:"bookMark.do",
+		        type:"post",
+		        data:{"sname":sname,"id":id},
+		        dataType:'text',
+		        success: function(data){
+		        	console.log(data);
+		        	if(data==1){
+		        		$("#bookMark > img").attr("src", "img/북마크 했을 때.png");
+		        	}else{
+		        		$("#bookMark > img").attr("src","img/북마크.png");
+		        	}
+		        }
+			})
+		})
+	})
 </script>
 </html>

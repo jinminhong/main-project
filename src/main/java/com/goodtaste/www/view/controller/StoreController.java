@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.goodtaste.www.bookmark.BookMarkVO;
 import com.goodtaste.www.menu.MenuVO;
 import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.store.StoreVO;
@@ -268,6 +269,43 @@ public class StoreController {
 		  return "myLocation.jsp";
 	  }
 	  
+	  @RequestMapping(value="bookMark.do")
+	  public void bookMarkToggle(BookMarkVO bv,HttpServletResponse response) {
+		  try {
+			PrintWriter out = response.getWriter();
+			if(storeService.bookMarkCheck(bv)==null) {
+				  storeService.insertBookMark(bv);
+				  out.write("1");
+			  }else {
+				  storeService.deleteBookMark(bv);
+				  out.write("0");
+			  }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	  }
 	  
+	  @RequestMapping(value="bookMark1.do")
+	  public void bookMarkToggle1(BookMarkVO bv,HttpServletResponse response) {
+		  try {
+			PrintWriter out = response.getWriter();
+			if(storeService.bookMarkCheck(bv)==null) {
+				  
+				  out.write("1");
+			  }else {
+				  
+				  out.write("0");
+			  }
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}  
+	  }
 	  
+	  @RequestMapping(value="bookMarkUser.do")
+	  public String bookMarkUser(BookMarkVO bv,Model model) {
+		  model.addAttribute("bookMarkList",storeService.bookMarkUser(bv)); 
+		  return "bookMarkUser.jsp";
+	  }
 }

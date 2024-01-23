@@ -2,6 +2,7 @@ package com.goodtaste.www.store.impl;
 
 import java.util.List;
 
+import com.goodtaste.www.bookmark.BookMarkVO;
 import com.goodtaste.www.menu.MenuVO;
 import com.goodtaste.www.review.ReviewVO;
 import com.goodtaste.www.store.StoreVO;
@@ -42,4 +43,12 @@ public interface StoreService {
 	public void updateLeave(WaitingVO wv);
 	
 	public void updateStar(ReviewVO rv);
+	
+	public BookMarkVO bookMarkCheck(BookMarkVO bv);
+	
+	public void insertBookMark(BookMarkVO bv);
+	
+	public void deleteBookMark(BookMarkVO bv);
+	
+	public List<BookMarkVO> bookMarkUser(BookMarkVO bv);
 }

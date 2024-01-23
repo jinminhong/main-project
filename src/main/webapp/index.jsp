@@ -75,7 +75,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="bookMarkUser.do?id=${user.id}">
 						<img src="img/찜.png" alt="" class="menuImg"/>
 						<p>찜</p>
 					</a>

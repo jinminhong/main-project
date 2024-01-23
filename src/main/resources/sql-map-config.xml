@@ -11,6 +11,7 @@
 		<typeAlias type="com.goodtaste.www.menu.MenuVO" alias="menu"></typeAlias> 
 		<typeAlias type="com.goodtaste.www.review.ReviewVO" alias="review"></typeAlias>
 		<typeAlias type="com.goodtaste.www.waiting.WaitingVO" alias="waiting"></typeAlias>
+		<typeAlias type="com.goodtaste.www.bookmark.BookMarkVO" alias="bookMark"></typeAlias>
 	</typeAliases>
 
 	<!-- Sql Mapper 설정  -->
