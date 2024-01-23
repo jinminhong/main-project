@@ -18,6 +18,7 @@
 <body>
 	<input type="hidden" id ="hiddenSname" value="${store.sname}">
 	<input type="hidden" id ="hiddenabSpace value="${store.abSpaces}">
+	
 	<c:choose>
 		<c:when test="${store.sname eq null}">
 			<div id="login" style="position: absolute;left: 50%;top: 50%;transform:translate(-50%,-50%);">
@@ -36,6 +37,7 @@
 			</div>	
 		</c:when>
 		<c:otherwise>
+		
 		<div style="display:flex">
 			<section id="section">
 				<div class="container">
@@ -74,6 +76,7 @@
 				</table>
 			</div>
 		</div>
+		<a href="logoutStore.do" style="position:relative;">로그아웃</a>
 		<c:forEach var="i" begin="0" end="${store.abSpaces-1}">
 		<div class="modal fade" id="myModal${i}">
 	    <div class="modal-dialog">
@@ -109,28 +112,28 @@
 		</c:otherwise>
 	</c:choose>
 	<script>
-	$(function () {
-		var total = 0;
+		var total0 = 0;
 		var total1 = 0;
 		var total2 = 0;
 		var total3 = 0;
 		var total4 = 0;
-		 $(".add-price").on("click", function() {
+	$(function () {
+		 $(".add-price0").on("click", function() {
 	            
 	            let value = parseInt($(this).data("value"), 10);
-	            total += value;
+	            total0 += value;
 				console.log("a")
 	            
-	            $(".total-price").text(total);
+	            $(".total-price0").text(total0);
 	        });
 		 
-		 $(".min-price").on("click", function() {
+		 $(".min-price0").on("click", function() {
 	            
 	            let value = parseInt($(this).data("value"), 10);
-	            total -= value;
+	            total0 -= value;
 				console.log("b")
 	            
-	            $(".total-price").text(total);
+	            $(".total-price0").text(total0);
 	        });
 		 $(".add-price1").on("click", function() {
 	            
@@ -357,7 +360,8 @@
 			
 		})
 		$('#cal0').on("click",function(e){
-			
+			total0=0;
+			$(".total-price0").text(total0);
 			$('#box0').removeClass('active')
 			$.ajax({
 			        url:"outStore.do",
@@ -382,9 +386,11 @@
 			        	console.log("에러")
 			        }
 			    })
+			    $("#myModal0").modal("toggle");
 		})
 		$('#cal1').on("click",function(e){
-			
+			total1=0;
+			$(".total-price1").text(total1);
 			$('#box1').removeClass('active')
 			$.ajax({
 			        url:"outStore.do",
@@ -409,9 +415,11 @@
 			        	console.log("에러")
 			        }
 			    })
+			    $("#myModal1").modal("toggle");
 		})
 		$('#cal2').on("click",function(e){
-
+			total2=0;
+			$(".total-price2").text(total2);
 		       $('#box2').removeClass('active')
 		       $.ajax({
 			        url:"outStore.do",
@@ -436,9 +444,11 @@
 			        	console.log("에러")
 			        }
 			    })
+			    $("#myModal2").modal("toggle");
 		})
 		$('#cal3').on("click",function(e){
-			e.preventDefault();
+			total3=0;
+			$(".total-price3").text(total3);
 		       $('#box3').removeClass('active')
 			 var href = $(this).attr('href');
 		       $.ajax({
@@ -464,8 +474,11 @@
 			        	console.log("에러")
 			        }
 			    })
+			    $("#myModal3").modal("toggle");
 		})
 		$('#cal4').on("click",function(e){
+				total4=0;
+				$(".total-price4").text(total4);
 		       $('#box4').removeClass('active')
 		       $.ajax({
 			        url:"outStore.do",
@@ -490,6 +503,7 @@
 			        	console.log("에러")
 			        }
 			    })
+			    $("#myModal4").modal("toggle");
 		})
 		
 		

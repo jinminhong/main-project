@@ -56,4 +56,10 @@
 			UPDATE WAITING SET REVIEWOK = 'OK' WHERE NO = #{no}
 		]]>
 	</update>
+	
+	<update id="updateUser">
+		<![CDATA[
+			UPDATE USER SET NAME = #{name},AGE = #{age},EMAIL = #{email},PASSWORD = #{password},NICKNAME = #{nickname} where ID = #{id}
+		]]>
+	</update>
 </mapper>

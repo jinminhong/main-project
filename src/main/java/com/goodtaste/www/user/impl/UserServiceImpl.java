@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserService {
 		userDAO.updateReviewOKWaiting(wv);
 		
 	}
+
+	@Override
+	public void updateUser(UserVO uv) {
+		userDAO.updateUser(uv);
+	}
 	
 	
 

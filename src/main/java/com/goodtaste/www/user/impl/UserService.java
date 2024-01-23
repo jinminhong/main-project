@@ -26,4 +26,6 @@ public interface UserService {
 	void insertReview(ReviewVO rv);
 	
 	void updateReviewOKWaiting(WaitingVO wv);
+	
+	void updateUser(UserVO uv);
 }

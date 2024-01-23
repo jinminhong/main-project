@@ -60,4 +60,9 @@ public class UserDAO {
 		System.out.println("===>mybatis로 updateReviewOKWaiting기능 처리");
 		mybatis.update("UserDAO.updateReviewOKWaiting",wv);
 	}
+	
+	public void updateUser(UserVO uv) {
+		System.out.println("===>mybatis로 updateUser 기능 처리");
+		mybatis.update("UserDAO.updateUser",uv);
+	}
 }

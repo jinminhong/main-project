@@ -148,4 +148,18 @@ public class UserController {
 		
 		return "index.do";
 	}
+	
+	@RequestMapping(value="updateUser.do")
+	public String updateUser(UserVO uv) {
+		return "modify.jsp";
+	}
+	
+	@RequestMapping(value="modify.do")
+	public String modifyUser(UserVO uv,HttpServletRequest request,HttpSession session) {
+		session = request.getSession();
+		userService.updateUser(uv);
+		session.setAttribute("user",userService.getLogin(uv));
+		request.setAttribute("modifyUser", "회원정보 수정 완료");
+		return "index.do";
+	}
 }

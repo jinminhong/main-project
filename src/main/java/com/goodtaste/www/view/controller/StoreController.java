@@ -231,6 +231,12 @@ public class StoreController {
 		}
 	  }
 	  
+	  @RequestMapping(value="logoutStore.do")
+	  public String logoutStore(HttpServletRequest request,HttpSession session) {
+		  session = request.getSession();
+		  session.invalidate();
+		  return "storeOnly.do";
+	  }
 	  //여기까지
 	  
 	  
