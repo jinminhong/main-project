@@ -10,7 +10,7 @@
     font-family: 'insungitCutelivelyjisu';
 }
 body {
-    width: 1200px;
+    width: 1000px;
 }
 #header {
     margin-top: 2%;
@@ -93,10 +93,10 @@ td > a{
     cursor: pointer;
 }
 .prev {
-    left: 15%;
+    left: 8%;
 }
 .next {
-    right: 15%;
+    right: 8%;
 }
 .prev,
 .next {

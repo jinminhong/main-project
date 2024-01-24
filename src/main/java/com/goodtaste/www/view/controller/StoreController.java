@@ -1,9 +1,13 @@
 package com.goodtaste.www.view.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.goodtaste.www.bookmark.BookMarkVO;
 import com.goodtaste.www.menu.MenuVO;
@@ -103,7 +108,14 @@ public class StoreController {
 	  }
 	  
 	  @RequestMapping(value="storeJoinOK.do") 
-	  public String insertStoreInfo(StoreVO vo,MenuVO mvo) { 
+	  public String insertStoreInfo(StoreVO vo,MenuVO mvo) throws IOException {
+		  MultipartFile uploadFile = vo.getUploadFile();
+		  if(!uploadFile.isEmpty()) {
+			  long timeStamp = System.currentTimeMillis();
+			  String fileName = timeStamp+"_"+uploadFile.getOriginalFilename();
+			  uploadFile.transferTo(new File("C:/JavaStudy/spring2/MainProject3/src/main/webapp/img음식점/"+fileName));
+			  vo.setPic(fileName);
+		  }
 		  System.out.println(vo.getSname()+":"+vo.getPassword());
 		  System.out.println(mvo.getMenu().toString()+":"+mvo.getMenuPrice()+":"+mvo.getSname());
 		  storeService.insertStoreInfo(vo); 
@@ -313,5 +325,36 @@ public class StoreController {
 	  public String bookMarkUser(BookMarkVO bv,Model model) {
 		  model.addAttribute("bookMarkList",storeService.bookMarkUser(bv)); 
 		  return "bookMarkUser.jsp";
+	  }
+	  
+	  @RequestMapping(value="random.do")
+	  public String randomStore(StoreVO vo,Model model) {
+		  List<StoreVO> list = new ArrayList<StoreVO>();
+		  int randomMax = storeService.getMaxRandom();
+		  System.out.println("randomMax" +randomMax);
+		  Set<Integer> set = new HashSet<Integer>();
+	      while (set.size() < 5) {
+	          int d = (int)(Math.random() * randomMax) + 1;
+	          System.out.println("랜덤숫자 : "+d);
+	          set.add(d);
+	      }
+	      System.out.println(set);
+	      
+	      for(int randomValue : set) {
+	    	  System.out.println("gg");
+	    	  vo.setRandom(randomValue);
+	    	  list.add(storeService.getRandomSname(vo));
+	      }
+	      System.out.println(list);
+	      model.addAttribute("randomStore",list);
+	      return "random.jsp";
+	  }
+	  
+	  @RequestMapping(value="ranking.do")
+	  public String getRankingStore(StoreVO vo,Model model) {
+		  List<StoreVO> list = new ArrayList<StoreVO>();
+		  list = storeService.getRankingStore();
+		  model.addAttribute("rankingList",list);
+		  return "ranking.jsp";
 	  }
 }

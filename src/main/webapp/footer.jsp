@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
-</head>
-<body>
-	<footer>
+
+	<footer style="width:900px">
 		<div class="inner">
 			<ul class="menu">
 				<li><a href="#">개인정보처리방침</a></li>
@@ -37,5 +29,3 @@
 			</p>
 		</div>
 	</footer>
-</body>
-</html>

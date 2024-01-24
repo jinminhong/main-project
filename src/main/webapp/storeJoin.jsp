@@ -18,7 +18,7 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>회원가입</h1>
-			<form action="storeJoinOK.do" method="post" class="was-validated">
+			<form action="storeJoinOK.do" method="post" class="was-validated" enctype="multipart/form-data">
 				<div class="form-group">
 					<div>가게 이름</div>
 					<input type="text" name="sname" id="sname" class="form-control"
@@ -56,6 +56,14 @@
 					<div class="valid-feedback">Valid.</div>
 					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
+				<div class="form-group">
+					<div>가게 사진</div>
+					<input type="file" name="uploadFile" id="uploadFile" class="form-control"
+						required>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				</div>
+				
 				<div class="form-group">
 					<div>메뉴 1</div>
 					<input type="text" name="menu" id="menu1"

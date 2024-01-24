@@ -131,4 +131,19 @@ public class StoreDAO {
 		return mybatis.selectList("StoreDAO.bookMarkUser",bv);
 		
 	}
+	
+	public int getMaxRandom() {
+		System.out.println("===>mybatis로 getMaxRandom 기능 처리");
+		return mybatis.selectOne("StoreDAO.getMaxRandom");
+	}
+	
+	public StoreVO getRandomSname(StoreVO vo) {
+		System.out.println("===>mybatis로 getRandomSname 기능 처리");
+		return mybatis.selectOne("StoreDAO.getRandomSname",vo);
+	}
+	
+	public List<StoreVO> getRankingStore(){
+		System.out.println("===>mybatis로 getRankingStore 기능 처리");
+		return mybatis.selectList("StoreDAO.getRankingStore");
+	}
 }

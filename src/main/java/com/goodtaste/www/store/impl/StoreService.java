@@ -51,4 +51,10 @@ public interface StoreService {
 	public void deleteBookMark(BookMarkVO bv);
 	
 	public List<BookMarkVO> bookMarkUser(BookMarkVO bv);
+	
+	public int getMaxRandom();
+	
+	public StoreVO getRandomSname(StoreVO vo);
+	
+	public List<StoreVO> getRankingStore();
 }

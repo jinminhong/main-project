@@ -130,7 +130,7 @@
 
 	    }
 	    console.log(data);
-	    for (var i = 0; i < 5; i++) {
+	    for (var i = 0; i < 15; i++) {
 	        createAndAppendStoreNodes(data[i]);
 	    }
 	}

@@ -3,6 +3,8 @@ package com.goodtaste.www.store;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class StoreVO {
 	private String sname;
 	private String genre;
@@ -19,8 +21,29 @@ public class StoreVO {
 	private Double avg_star;
 	private int waitingNum;
 	private int abSpaces;
+	private int random;
+	private int count;
+	private MultipartFile uploadFile;
 	
 	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getRandom() {
+		return random;
+	}
+	public void setRandom(int random) {
+		this.random = random;
+	}
 	public int getAbSpaces() {
 		return abSpaces;
 	}

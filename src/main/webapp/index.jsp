@@ -86,7 +86,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="random.do">
 						<img src="img/추천.png" alt="" class="menuImg"/>
 						<p>메뉴 추천</p>
 					</a>
@@ -98,7 +98,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="">
+					<a href="ranking.do">
 						<img src="img/랭킹.png" alt="" class="menuImg"/>
 						<p>랭킹</p>
 					</a>
@@ -200,7 +200,7 @@
                 <a class="next">&#10095;</a>
             </div>
         </div>
-        <div id="recommand-content">
+        <div id="recommand-content" style="width:900px">
             <div class="recommand-header">
                 <div><h2>당신을 위한 추천 식당</h2></div>
             </div>

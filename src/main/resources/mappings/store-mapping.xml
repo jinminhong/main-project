@@ -22,8 +22,8 @@
 	
 	<insert id="insertStoreInfo" parameterType="store">
 		<![CDATA[
-			INSERT INTO STORE(SNAME,PASSWORD,SPACES,STOREDESC) 
-			VALUES(#{sname},#{password},#{spaces},#{storeDesc})
+			INSERT INTO STORE(SNAME,PASSWORD,PIC,SPACES,STOREDESC,ABSPACES) 
+			VALUES(#{sname},#{password},#{pic},#{spaces},#{storeDesc},#{spaces})
 		]]>
 	</insert>
 	
@@ -132,6 +132,24 @@
 	<select id="bookMarkUser" resultType="bookMark">
 		<![CDATA[
 			SELECT * FROM BOOKMARK WHERE ID = #{id}
+		]]>
+	</select>
+	
+	<select id="getMaxRandom" resultType="int">
+		<![CDATA[
+			SELECT MAX(RANDOM) FROM STORE 
+		]]>
+	</select>
+	
+	<select id="getRandomSname" resultType="store">
+		<![CDATA[
+			SELECT * FROM STORE WHERE RANDOM = #{random}
+		]]>
+	</select>
+	
+	<select id="getRankingStore" resultType="store">
+		<![CDATA[
+			SELECT sname, COUNT(*) AS count FROM BOOKMARK GROUP BY sname ORDER BY count DESC LIMIT 5;
 		]]>
 	</select>
 </mapper>

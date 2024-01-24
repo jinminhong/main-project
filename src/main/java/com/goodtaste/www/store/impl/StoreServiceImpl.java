@@ -118,7 +118,20 @@ public class StoreServiceImpl implements StoreService {
 		return storeDAO.bookMarkUser(bv);
 		
 	}
+	@Override
+	public int getMaxRandom() {
+		
+		return storeDAO.getMaxRandom();
+	}
 	
+	@Override
+	public StoreVO getRandomSname(StoreVO vo) {
+		return storeDAO.getRandomSname(vo);
+	}
+	
+	public List<StoreVO> getRankingStore(){
+		return storeDAO.getRankingStore();
+	}
 	
 	
 	
