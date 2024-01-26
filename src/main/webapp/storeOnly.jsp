@@ -42,7 +42,7 @@
 			<section id="section">
 				<div class="container">
 					<c:forEach var="i" begin="0" end="${store.abSpaces-1}">
-						<div class="box" id="box${i}"></div>							
+						<div class="box" id="box${i}">${i+1}번</div>							
 					</c:forEach>
 	
 				</div>

@@ -124,7 +124,6 @@ public class UserController {
 		uv = (UserVO)session.getAttribute("user");
 		wv.setId(uv.getId());
 		List<WaitingVO> list = userService.getReviewList(wv);
-		System.out.println(list.get(0).getNo());
 		model.addAttribute("reviewList", list);
 		return "review.jsp";
 	}
